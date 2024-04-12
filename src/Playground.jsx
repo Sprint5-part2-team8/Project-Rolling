@@ -26,7 +26,7 @@ const PlayGround = () => {
   const testGetRecipientById = async () => {
     try {
       // 테스트를 위한 임시 ID 사용
-      const recipientId = 5781;
+      const recipientId = 5800;
       const data = await getRecipientById(recipientId);
       console.log(data);
     } catch (error) {
@@ -46,7 +46,7 @@ const PlayGround = () => {
   const testDeleteRecipient = async () => {
     try {
       // 삭제할 대상의 ID. 실제 존재하는 ID로 변경해야 함
-      const recipientId = 5786;
+      const recipientId = 5800;
       const status = await deleteRecipient(recipientId);
       console.log(`Recipient deleted with status: ${status}`);
     } catch (error) {
@@ -56,7 +56,7 @@ const PlayGround = () => {
 
   const testCreateMessage = async () => {
     try {
-      const recipientId = 5786; // 메시지를 보낼 대상의 ID. 존재하는 대상의 ID로 변경해야 함
+      const recipientId = 5798; // 메시지를 보낼 대상의 ID. 존재하는 대상의 ID로 변경해야 함
       const data = await createMessage(
         recipientId,
         "보내는 사람",
@@ -73,7 +73,7 @@ const PlayGround = () => {
 
   const testGetMessages = async () => {
     try {
-      const recipientId = 5786; // 메시지를 조회할 대상의 ID. 존재하는 대상의 ID로 변경해야 함
+      const recipientId = 5798; // 메시지를 조회할 대상의 ID. 존재하는 대상의 ID로 변경해야 함
       const data = await getMessages(recipientId);
       console.log(data);
     } catch (error) {
@@ -83,7 +83,7 @@ const PlayGround = () => {
 
   const testDeleteMessage = async () => {
     try {
-      const messageId = 10333; // 삭제할 메시지의 ID. 실제 존재하는 메시지 ID로 변경해야 함
+      const messageId = 10363; // 삭제할 메시지의 ID. 실제 존재하는 메시지 ID로 변경해야 함
       const status = await deleteMessage(messageId);
       console.log(`Message deleted with status: ${status}`);
     } catch (error) {
