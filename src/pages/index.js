@@ -1,1 +1,2 @@
-export * from "./MessagePage"
+export * from "./MessagePage";
+export * from "./HomePage";

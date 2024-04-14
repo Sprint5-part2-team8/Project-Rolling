@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { MessagePage } from "pages";
+import { MessagePage, HomePage } from "pages";
 import PlayGround from "Playground";
 
 function App() {
