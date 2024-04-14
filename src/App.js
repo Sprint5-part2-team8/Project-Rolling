@@ -6,6 +6,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+	    <Route path="/" element={<HomePage />}></Route>
         <Route path="/post/{id}/message" element={<MessagePage />}></Route>
         <Route path="*" element={<PlayGround />}></Route>
       </Routes>

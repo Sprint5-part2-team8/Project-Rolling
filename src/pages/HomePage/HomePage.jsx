@@ -1,7 +1,8 @@
 import styles from "./HomePage.module.scss";
 import classNames from "classnames/bind";
 import { Layout } from "layout/Layout";
-import { CARD_IMAGE, EMOJI_IMAGE } from "./constant";
+import CARD_IMAGE from "./imgSrc/card.svg";
+import EMOJI_IMAGE from "./imgSrc/emoji.png";
 
 const cx = classNames.bind(styles);
 
