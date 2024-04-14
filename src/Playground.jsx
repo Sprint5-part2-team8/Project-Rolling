@@ -4,6 +4,8 @@ import {
   getRecipientById,
   getMessages,
   getReactions,
+  getBackgroundImages,
+  getProfileImages,
   createRecipient,
   createMessage,
   deleteRecipient,
@@ -111,6 +113,24 @@ const PlayGround = () => {
     }
   };
 
+  const testGetBackgroundImages = async () => {
+    try {
+      const data = await getBackgroundImages();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const testGetProfileImages = async () => {
+    try {
+      const data = await getProfileImages();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <button onClick={testGetRecipients}>getRecipients</button>
@@ -122,6 +142,8 @@ const PlayGround = () => {
       <button onClick={testDeleteMessage}>deleteMessage</button>
       <button onClick={testAddReaction}>addReaction</button>
       <button onClick={testGetReactions}>getReactions</button>
+	  <button onClick={testGetBackgroundImages}>Fetch Background Images</button>
+	  <button onClick={testGetProfileImages}>Fetch Profile Images</button>
     </div>
   );
 };
