@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import styles from "./NameInput.module.scss";
+import styles from "./SenderInput.module.scss";
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-/** 이름 입력창 */
-export const NameInput = ({ value, setValue, title, text = "" }) => {
+/** 메세지 남긴 사람 이름 입력창 */
+export const SenderInput = ({ value, setValue }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleBlur = (event) => {
@@ -25,12 +25,12 @@ export const NameInput = ({ value, setValue, title, text = "" }) => {
 
   return (
     <div className={cx("container")}>
-      <h2 className={cx("title")}>{title}</h2>
+      <h2 className={cx("title")}>From.</h2>
       <input
         onBlur={handleBlur}
         className={cx("input")}
         onChange={(event) => setValue(event.target.value)}
-        placeholder={`${text}이름을 입력해 주세요.`}
+        placeholder="이름을 입력해 주세요."
       />
       <p className={cx("errorMessage")}>{errorMessage}</p>
     </div>

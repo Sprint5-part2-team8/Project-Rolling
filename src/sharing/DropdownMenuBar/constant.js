@@ -1,2 +1,2 @@
-export const ARROW_DOWN = "/images/arrowDown.svg";
-export const ARROW_UP = "/images/arrowUp.svg";
+export const arrowDown = "/images/arrowDown.svg";
+export const arrowUp = "/images/arrowUp.svg";
