@@ -1,0 +1,57 @@
+@import "src/styles/global.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.profile-count {
+  display: flex;
+  margin-right: 1.1rem;
+  height: 2.8rem;
+  position: relative;
+  width: 7.5rem;
+
+  .images {
+    border: 0.2rem solid white;
+    min-width: 2.8rem;
+    position: absolute;
+    height: 2.8rem;
+    border-radius: 3.33rem;
+    background-color: white;
+  }
+
+  img {
+    height: 100%;
+    overflow: hidden;
+    border-radius: 33.3rem;
+  }
+}
+
+.images:nth-child(1) {
+  z-index: 1;
+}
+
+.images:nth-child(2) {
+  z-index: 2;
+  left: 1.5rem;
+}
+
+.images:nth-child(3) {
+  z-index: 3;
+  left: 3rem;
+}
+
+.images:nth-child(4) {
+  color: black;
+  padding: 0.6rem;
+  text-align: center;
+  font-size: 1.2rem;
+  z-index: 3;
+  left: 4.5rem;
+  background-color: white;
+  border: 0.1rem solid #e3e3e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

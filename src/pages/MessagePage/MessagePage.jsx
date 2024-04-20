@@ -1,42 +1,69 @@
-import { useState } from "react";
-import styles from "./MessagePages.module.scss";
+import { useState, useEffect } from "react";
+import styles from "./MessagePage.module.scss";
 import classNames from "classnames/bind";
-import { defaultImage, imageTest1, imageTest2 } from "./constant";
-import { SenderInput } from "../../sharing/Sender/SenderInput";
-import { Profile } from "../../sharing/Profile/Profile";
-import { DropdownMenuBar } from "../../sharing/DropdownMenuBar/DropdownMenuBar";
-import { Button } from "../../sharing/Button/Button";
-import { TextEditor } from "../../sharing/TextEditor/TextEditor";
+import { getProfileImages } from "util";
+import { useParams, useNavigate } from "react-router-dom";
+import { Layout } from "layout/Layout";
+import {
+  NameInput,
+  Profile,
+  DropdownMenuBar,
+  TextEditor,
+  CreateButton,
+} from "sharing";
+import { createMessage } from "util";
 
 const cx = classNames.bind(styles);
 
 export const MessagePage = () => {
-  const [sender, setSender] = useState("");
-  const [profileImage, setProfileImage] = useState(defaultImage);
+  const [profileAllImage, setprofileAllImage] = useState([]);
+
+  async function fetchImages() {
+    try {
+      const { imageUrls } = await getProfileImages();
+      setProfileImage(imageUrls[0]);
+      setprofileAllImage(imageUrls.slice(1));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  const [senderName, setSenderName] = useState("");
+  const [profileImage, setProfileImage] = useState("");
   const [relationship, setRelationship] = useState("지인");
   const [content, setContent] = useState("");
   const [font, setFont] = useState("Noto Sans");
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  const profileImages = [imageTest1, imageTest2];
+  const profileImages = [...profileAllImage];
   const relationships = ["친구", "지인", "동료", "가족"];
-  const Fonts = ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 손편지체"];
+  const fonts = ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 손편지체"];
 
-  /** onSubmit console 테스트 */
   const handleSubmit = (event) => {
-    // 새로고침 방지
     event.preventDefault();
 
-    console.log(`sender : ${sender}`);
-    console.log(`profileImage : ${profileImage}`);
-    console.log(`relationship : ${relationship}`);
-    console.log(`content : ${content}`);
-    console.log(`font : ${font}`);
+    createMessage(id, senderName, relationship, content, font, profileImage)
+      .then(() => {
+        navigate(`/post/${id}`); // 성공적으로 메시지를 생성한 후에 경로 이동
+      })
+      .catch((error) => {
+        console.error("Message creation failed:", error);
+      });
   };
 
   return (
-    <>
+    <Layout isHiddenButton={true}>
       <form className={cx("container")} onSubmit={handleSubmit}>
-        <SenderInput value={sender} setValue={setSender} />
+        <NameInput
+          value={senderName}
+          setValue={setSenderName}
+          title={"From."}
+        />
 
         <Profile
           value={profileImage}
@@ -57,13 +84,13 @@ export const MessagePage = () => {
           <DropdownMenuBar
             value={font}
             setValue={setFont}
-            data={Fonts}
+            data={fonts}
             text="폰트 선택"
           />
         </div>
 
-        <Button />
+        <CreateButton userName={senderName} content={content} />
       </form>
-    </>
+    </Layout>
   );
 };

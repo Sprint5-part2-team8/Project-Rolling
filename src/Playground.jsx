@@ -4,6 +4,7 @@ import {
   getRecipientById,
   getMessages,
   getReactions,
+  getBackgroundImages,
   createRecipient,
   createMessage,
   deleteRecipient,
@@ -26,7 +27,7 @@ const PlayGround = () => {
   const testGetRecipientById = async () => {
     try {
       // 테스트를 위한 임시 ID 사용
-      const recipientId = 5781;
+      const recipientId = 6110;
       const data = await getRecipientById(recipientId);
       console.log(data);
     } catch (error) {
@@ -36,7 +37,11 @@ const PlayGround = () => {
 
   const testCreateRecipient = async () => {
     try {
-      const data = await createRecipient("새 대상", "blue");
+      const data = await createRecipient(
+        "새 대상",
+        "blue",
+        "https://picsum.photos/id/683/3840/2160"
+      );
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -46,7 +51,7 @@ const PlayGround = () => {
   const testDeleteRecipient = async () => {
     try {
       // 삭제할 대상의 ID. 실제 존재하는 ID로 변경해야 함
-      const recipientId = 5786;
+      const recipientId = 5939;
       const status = await deleteRecipient(recipientId);
       console.log(`Recipient deleted with status: ${status}`);
     } catch (error) {
@@ -56,7 +61,7 @@ const PlayGround = () => {
 
   const testCreateMessage = async () => {
     try {
-      const recipientId = 5786; // 메시지를 보낼 대상의 ID. 존재하는 대상의 ID로 변경해야 함
+      const recipientId = 6110; // 메시지를 보낼 대상의 ID. 존재하는 대상의 ID로 변경해야 함
       const data = await createMessage(
         recipientId,
         "보내는 사람",
@@ -73,7 +78,7 @@ const PlayGround = () => {
 
   const testGetMessages = async () => {
     try {
-      const recipientId = 5786; // 메시지를 조회할 대상의 ID. 존재하는 대상의 ID로 변경해야 함
+      const recipientId = 6110; // 메시지를 조회할 대상의 ID. 존재하는 대상의 ID로 변경해야 함
       const data = await getMessages(recipientId);
       console.log(data);
     } catch (error) {
@@ -93,7 +98,7 @@ const PlayGround = () => {
 
   const testAddReaction = async () => {
     try {
-      const recipientId = 5786; // 리액션을 추가할 대상의 ID. 존재하는 대상의 ID로 변경해야 함
+      const recipientId = 6110; // 리액션을 추가할 대상의 ID. 존재하는 대상의 ID로 변경해야 함
       const data = await addReaction(recipientId, "😊", "increase");
       console.log(data);
     } catch (error) {
@@ -103,8 +108,17 @@ const PlayGround = () => {
 
   const testGetReactions = async () => {
     try {
-      const recipientId = 5786; // 리액션을 조회할 대상의 ID. 존재하는 대상의 ID로 변경해야 함
+      const recipientId = 6110; // 리액션을 조회할 대상의 ID. 존재하는 대상의 ID로 변경해야 함
       const data = await getReactions(recipientId);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const testGetBackgroundImages = async () => {
+    try {
+      const data = await getBackgroundImages();
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -122,6 +136,7 @@ const PlayGround = () => {
       <button onClick={testDeleteMessage}>deleteMessage</button>
       <button onClick={testAddReaction}>addReaction</button>
       <button onClick={testGetReactions}>getReactions</button>
+      <button onClick={testGetBackgroundImages}>getBackgroundImages</button>
     </div>
   );
 };
