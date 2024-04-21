@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./ShareButton.module.scss";
 import classNames from "classnames/bind";
-import { SHARE_ICON, COMPLETED_ICON, CLOSE_ICON } from "./constant";
 
 const cx = classNames.bind(styles);
 
@@ -26,7 +25,7 @@ export function ShareButton() {
   return (
     <div className={cx("container")}>
       <div className={cx("share-icon-button")} onClick={toggleDropdown}>
-        <img src={SHARE_ICON} alt="url 공유 버튼" />
+        <img src="../images/shareIcon.svg" alt="url 공유 버튼" />
       </div>
       {isOpen && (
         <div className={cx("share-button-container")}>
@@ -39,11 +38,11 @@ export function ShareButton() {
       {isCopyed && (
         <div className={cx("toast")}>
           <div className={cx("toast-text")}>
-            <img src={COMPLETED_ICON} alt="체크 이미지" />
+            <img src="../images/completed.png" alt="체크 이미지" />
             URL이 복사되었습니다.
           </div>
           <img
-            src={CLOSE_ICON}
+            src="../images/close.png"
             alt="닫기 버튼 이미지"
             onClick={() => setIsCopyed(false)}
           />
